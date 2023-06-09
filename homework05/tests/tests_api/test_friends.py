@@ -4,7 +4,7 @@ import unittest
 
 import responses
 
-from vkapi.friends import FriendsResponse, get_friends, get_mutual
+from homework05.vkapi.friends import FriendsResponse, get_friends, get_mutual
 
 
 class FriendsTestCase(unittest.TestCase):
@@ -17,7 +17,7 @@ class FriendsTestCase(unittest.TestCase):
             json={"response": {"count": len(expected_fids), "items": expected_fids}},
             status=200,
         )
-        fids = get_friends(user_id=1)
+        fids = get_friends(user_id=201430445)
         expected_response = FriendsResponse(count=len(expected_fids), items=expected_fids)
         self.assertEqual(expected_response, fids)
 

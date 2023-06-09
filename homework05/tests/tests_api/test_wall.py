@@ -6,7 +6,7 @@ from urllib.parse import unquote
 import pandas as pd
 import responses
 
-from vkapi.wall import get_wall_execute
+from homework05.vkapi.wall import get_wall_execute
 
 
 class GetWallTestCase(unittest.TestCase):
