@@ -40,23 +40,23 @@ class GameOfLife:
         """ Запустить игру """
         pygame.init()
         clock = pygame.time.Clock()
-        pygame.display.set_caption("Game of Life")
-        self.screen.fill(pygame.Color("white"))
+        pygame.display.set_caption('Game of Life')
+        self.screen.fill(pygame.Color('white'))
 
         # Создание списка клеток
-        # PUT YOUR CODE HERE
+        self.grid = self.create_grid(True)
 
         running = True
         while running:
             for event in pygame.event.get():
                 if event.type == QUIT:
                     running = False
-            self.draw_lines()
-
             # Отрисовка списка клеток
+            self.draw_grid()
             # Выполнение одного шага игры (обновление состояния ячеек)
-            # PUT YOUR CODE HERE
-
+            self.grid = self.get_next_generation()
+            # отрисовка линий
+            self.draw_lines()
             pygame.display.flip()
             clock.tick(self.speed)
         pygame.quit()

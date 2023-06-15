@@ -2,6 +2,7 @@ import pathlib
 import random
 import typing as tp
 
+from typing import List, Optional, Tuple
 import pygame
 from pygame.locals import *
 
@@ -12,10 +13,10 @@ Grid = tp.List[Cells]
 
 class GameOfLife:
     def __init__(
-        self,
-        size: tp.Tuple[int, int],
-        randomize: bool = True,
-        max_generations: tp.Optional[float] = float("inf"),
+            self,
+            size: tp.Tuple[int, int],
+            randomize: bool = True,
+            max_generations: tp.Optional[float] = float("inf"),
     ) -> None:
         # Размер клеточного поля
         self.rows, self.cols = size
@@ -70,6 +71,10 @@ class GameOfLife:
         self.curr_generation = self.get_next_generation()
         self.generations += 1
 
+    def toggle_grid_element(self, row, col):
+        val = self.curr_generation[row][col]
+        self.curr_generation[row][col] = int(val != 1)
+
     @property
     def is_max_generations_exceeded(self) -> bool:
         """
@@ -102,6 +107,7 @@ class GameOfLife:
         life.curr_generation = grid
 
         return life
+
     def save(self, filename: pathlib.Path) -> None:
         """
         Сохранить текущее состояние клеток в указанный файл.
@@ -110,3 +116,5 @@ class GameOfLife:
             for row in self.curr_generation:
                 row = "".join(map(str, row))
                 file.write(row)
+
+

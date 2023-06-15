@@ -6,6 +6,7 @@ from ui import UI
 
 screen = curses.initscr()
 
+
 class Console(UI):
     def __init__(self, life: GameOfLife) -> None:
         super().__init__(life)
@@ -58,6 +59,7 @@ class Console(UI):
             screen.refresh()
         curses.endwin()
 
+
 if __name__ == '__main__':
-    c = GameOfLife((20, 20))
+    c = Console(GameOfLife((30, 50)))
     c.run()
